@@ -35,11 +35,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`wrapper transition-transform duration-500 ${
+      className={`transition-transform duration-300 flex ${
         isVisible ? "translate-y-8 sm:translate-y-10" : "-translate-y-full"
       } fixed w-full top-0 z-40`}
     >
-      <div className="flex items-center justify-between bg-[#dddddd] bg-opacity-25 z-50 rounded-full px-5 py-1 max-w-7xl lg:max-w-6xl mx-auto">
+      <div className="flex items-center justify-between bg-[#dddddd] bg-opacity-25 z-50 rounded-full px-5 py-1 mx-auto backdrop-blur-sm">
         <ul className="flex items-center gap-3 sm:gap-5">
           {navLinks.map((link) => (
             <li key={link.path}>
@@ -56,7 +56,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div>
+        <div className="pr-2 sm:pr-5">
           <Link href="/">
             <Image src="/Logo.svg" alt="logo" width={40} height={40} />
           </Link>
