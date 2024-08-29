@@ -37,7 +37,7 @@ const Navbar = () => {
     <nav
       className={`transition-transform duration-300 flex ${
         isVisible ? "translate-y-8 sm:translate-y-10" : "-translate-y-full"
-      } fixed w-full top-0 z-40`}
+      } w-full top-0 z-40 ${isVisible ? "relative" : ""} sm:fixed`}
     >
       <div className="flex items-center justify-between bg-[#dddddd] bg-opacity-25 z-50 rounded-full px-5 py-1 mx-auto backdrop-blur-sm">
         <ul className="flex items-center gap-3 sm:gap-5">
