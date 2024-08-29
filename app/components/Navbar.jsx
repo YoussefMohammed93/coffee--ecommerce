@@ -39,7 +39,7 @@ const Navbar = () => {
         isVisible ? "translate-y-8 sm:translate-y-10" : "-translate-y-full"
       } w-full top-0 z-40 ${isVisible ? "relative" : ""} sm:fixed`}
     >
-      <div className="flex items-center justify-between bg-[#dddddd] bg-opacity-25 z-50 rounded-full px-5 py-1 mx-auto backdrop-blur-sm">
+      <div className="flex items-center justify-between bg-[#dddddd] bg-opacity-25 z-50 rounded-full px-5 py-1 mx-auto backdrop-blur-sm shadow-2xl">
         <ul className="flex items-center gap-3 sm:gap-5">
           {navLinks.map((link) => (
             <li key={link.path}>

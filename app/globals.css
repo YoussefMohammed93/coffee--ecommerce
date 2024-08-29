@@ -4,7 +4,8 @@
 
 body {
   direction: rtl;
-  min-height: 200vh;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .wrapper {
@@ -20,4 +21,17 @@ body {
     padding-left: 10px;
     padding-right: 10px;
   }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #5f1c00;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #421400;
 }
