@@ -4,6 +4,7 @@
 
 body {
   direction: rtl;
+  min-height: 200vh;
 }
 
 .wrapper {

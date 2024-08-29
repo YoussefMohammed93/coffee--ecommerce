@@ -9,7 +9,7 @@ const HeroSection = () => {
     >
       <div className="absolute inset-0 bg-black opacity-60"></div>
       <Navbar />
-      <div className="relative grid grid-cols-1 md:grid-cols-2 h-full wrapper">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 h-full wrapper pt-[108px]">
         <div className="flex items-center justify-self-center md:justify-self-end order-1 md:order-2 pt-5 self-baseline">
           <img
             src="coffee.png"
