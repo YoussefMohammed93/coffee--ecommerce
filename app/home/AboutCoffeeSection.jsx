@@ -17,9 +17,9 @@ export default function AboutCoffeeSection() {
   ];
 
   return (
-    <div className="bg-[#e9e2d6] py-12 px-4 lg:px-8">
+    <div className="bg-[#e9e2d6] py-12">
       <div className="wrapper flex flex-col lg:flex-row lg:items-center">
-        <div className="flex-1 mb-8 lg:mb-0 lg:pr-8 flex flex-col items-center lg:items-start text-center lg:text-right">
+        <div className="flex-1 mb-8 lg:mb-0 flex flex-col items-center lg:items-start text-center lg:text-right">
           <h1
             className="text-[#5f1c00] text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
             style={{ lineHeight: "1.4" }}

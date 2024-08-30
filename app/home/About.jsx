@@ -49,7 +49,7 @@ export default function About() {
               <h3 className="text-xl font-semibold text-[#5f1c00] text-center">
                 {item.title}
               </h3>
-              <p className="text-center px-4">{item.description}</p>
+              <p className="text-center">{item.description}</p>
             </div>
           ))}
         </div>
