@@ -84,7 +84,7 @@ export default function ProductsSection() {
           {productsData.map((item, index) => (
             <SwiperSlide key={index}>
               <div className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md group mx-10 sm:mx-0">
-                <div className="w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-40 relative overflow-hidden">
+                <div className="w-48 h-48 relative overflow-hidden">
                   <Image
                     src={item.imgSrc}
                     alt="coffee"
