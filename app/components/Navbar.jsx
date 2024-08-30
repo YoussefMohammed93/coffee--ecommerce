@@ -3,12 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   const navLinks = [
     { name: "الرئيسية", path: "/" },
@@ -16,29 +13,8 @@ const Navbar = () => {
     { name: "سلة التسوق", path: "/cart" },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      setLastScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
-
   return (
-    <nav
-      className={`transition-transform duration-300 flex ${
-        isVisible ? "translate-y-8 sm:translate-y-10" : "-translate-y-full"
-      } w-full top-0 z-40 ${isVisible ? "relative" : ""} sm:fixed`}
-    >
+    <nav className="flex w-full relative z-40 pt-10">
       <div className="flex items-center justify-between bg-[#dddddd] bg-opacity-25 z-50 rounded-full px-5 py-1 mx-auto backdrop-blur-md shadow-2xl">
         <ul className="flex items-center gap-3 sm:gap-5">
           {navLinks.map((link) => (

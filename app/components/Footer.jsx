@@ -28,7 +28,7 @@ export default function Footer() {
             اتصل بنا
           </Link>
         </nav>
-        <div className="flex justify-center md:justify-end gap-6">
+        <div className="flex items-center justify-center md:justify-end gap-6">
           <Link
             href="https://wa.me/+201024349244"
             className="text-black hover:text-[#5f1c00] duration-200 transition-all"
@@ -38,13 +38,12 @@ export default function Footer() {
             <Image
               src="/whatsapp.png"
               alt="whatsapp"
-              width={40}
-              height={40}
+              width={41}
+              height={41}
               layout="fixed"
               quality={100}
             />
           </Link>
-
           <Link
             href="https://www.facebook.com/Basha557"
             target="_blank"
@@ -53,7 +52,7 @@ export default function Footer() {
             <Image
               src="/facebook.png"
               alt="facebook"
-              width={38}
+              width={37}
               height={0}
               layout="fixed"
               quality={100}

@@ -6,42 +6,38 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
+import ProductsButton from "../components/ProductsButton";
 
 const productsData = [
   {
     imgSrc: "/product.png",
-    title: "بن الباشا",
+    title: "1بن الباشا",
     price: "100 EGP",
   },
   {
     imgSrc: "/product.png",
-    title: "بن الباشا",
-    price: "100 EGP",
+    title: "2بن الباشا",
+    price: "200 EGP",
   },
   {
     imgSrc: "/product.png",
-    title: "بن الباشا",
-    price: "100 EGP",
+    title: "3بن الباشا",
+    price: "240 EGP",
   },
   {
     imgSrc: "/product.png",
-    title: "بن الباشا",
-    price: "100 EGP",
+    title: "4بن الباشا",
+    price: "350 EGP",
   },
   {
     imgSrc: "/product.png",
-    title: "بن الباشا",
-    price: "100 EGP",
+    title: "5بن الباشا",
+    price: "50 EGP",
   },
   {
     imgSrc: "/product.png",
-    title: "بن الباشا",
-    price: "100 EGP",
-  },
-  {
-    imgSrc: "/product.png",
-    title: "بن الباشا",
-    price: "100 EGP",
+    title: "6بن الباشا",
+    price: "260 EGP",
   },
 ];
 
@@ -83,14 +79,14 @@ export default function ProductsSection() {
         >
           {productsData.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md group mx-10 sm:mx-0">
+              <div className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md mx-10 sm:mx-0">
                 <div className="w-48 h-48 relative overflow-hidden">
                   <Image
                     src={item.imgSrc}
                     alt="coffee"
                     layout="fill"
                     objectFit="contain"
-                    className="transform transition-transform duration-300 group-hover:scale-[1.15] py-1"
+                    className="transform transition-transform duration-300 group-hover:scale-[1.15] sm:py-3"
                   />
                 </div>
                 <h3 className="text-lg font-semibold text-[#5f1c00] text-center">
@@ -101,7 +97,7 @@ export default function ProductsSection() {
                 </p>
                 <Link
                   href="/"
-                  className="flex items-center text-lg gap-2 border border-black px-5 py-2 my-2"
+                  className="group flex items-center text-lg gap-2 border border-black px-5 py-2 my-2 relative bg-transparent font-medium uppercase text-black transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition-transform before:duration-300 before:content-[''] hover:text-white before:hover:scale-x-100"
                 >
                   اختيارات الشراء
                   <svg
@@ -109,6 +105,7 @@ export default function ProductsSection() {
                     viewBox="0 0 24 24"
                     width={24}
                     height={24}
+                    className="transition-colors duration-200 group-hover:text-white"
                     color={"#000000"}
                     fill={"none"}
                   >
@@ -156,6 +153,9 @@ export default function ProductsSection() {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="pb-5 flex justify-center">
+          <ProductsButton />
+        </div>
       </div>
     </section>
   );

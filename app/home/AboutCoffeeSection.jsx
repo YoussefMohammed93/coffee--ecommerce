@@ -4,7 +4,7 @@ export default function AboutCoffeeSection() {
   const coffeeDetails = [
     {
       imgSrc: "/coffee-beans-img1.png",
-      text: "أجود أنواع حبوب القهوه",
+      text: "أجود الأنواع من حبوب القهوه",
     },
     {
       imgSrc: "/coffee-beans-img2.png",

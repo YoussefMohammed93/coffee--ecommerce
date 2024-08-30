@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Navbar from "../components/Navbar";
+import ProductsButton from "../components/ProductsButton";
 
 const HeroSection = () => {
   return (
@@ -9,7 +9,7 @@ const HeroSection = () => {
     >
       <div className="absolute inset-0 bg-black opacity-60"></div>
       <Navbar />
-      <div className="wrapper relative grid grid-cols-1 md:grid-cols-2 h-full pt-[108px]">
+      <div className="wrapper relative grid grid-cols-1 md:grid-cols-2 h-full pt-[1px]">
         <div className="flex items-center justify-self-center md:justify-self-end order-1 md:order-2 pt-5 self-baseline">
           <img
             src="coffee.png"
@@ -30,12 +30,7 @@ const HeroSection = () => {
             بن عربي فاخر من أجود أنواع البن العالمية الفتة والفحص بعناية ويتابعه
             مجموعة من الخبراء لأفضل مذاق ممكن للبن.
           </p>
-          <Link
-            href="/"
-            className="mt-5 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition"
-          >
-            منتجات بن الباشا
-          </Link>
+          <ProductsButton />
         </div>
       </div>
     </section>
