@@ -63,7 +63,7 @@ export default function ProductsSection() {
                 <p className="text-center" style={{ direction: "ltr" }}>
                   {item.price}
                 </p>
-                <CardButton />
+                <CardButton text="اختيارات الشراء" href="/product" />
               </div>
             </SwiperSlide>
           ))}

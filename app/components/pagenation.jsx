@@ -1,15 +1,12 @@
-import React from "react";
-
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div className="flex justify-center items-center space-x-5 pb-10">
-      {/* Previous Button */}
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="border rounded-md px-5 py-3 ml-5 disabled:hover:bg-white disabled:hover:cursor-not-allowed hover:bg-gray-200 disabled:opacity-50"
+        className="border rounded-md px-5 py-3 ml-5 duration-200 transition-all disabled:hover:bg-white disabled:hover:cursor-not-allowed hover:bg-gray-200 disabled:opacity-50"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,13 +25,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           />
         </svg>
       </button>
-
-      {/* Page Numbers */}
       {pageNumbers.map((page) => (
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`border rounded-md font-semibold px-5 py-3 ${
+          className={`border rounded-md font-semibold duration-200 transition-all px-5 py-3 ${
             page === currentPage
               ? "bg-orange-500 text-white"
               : "hover:bg-gray-200"
@@ -43,12 +38,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           {page}
         </button>
       ))}
-
-      {/* Next Button */}
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="border rounded-md px-5 py-3 disabled:hover:bg-white disabled:hover:cursor-not-allowed hover:bg-gray-200 disabled:opacity-50"
+        className="border rounded-md px-5 py-3 duration-200 transition-all disabled:hover:bg-white disabled:hover:cursor-not-allowed hover:bg-gray-200 disabled:opacity-50"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

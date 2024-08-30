@@ -39,3 +39,7 @@ body {
 .swiper-wrapper {
   margin-bottom: 50px !important;
 }
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: #5f1c00 !important;
+}

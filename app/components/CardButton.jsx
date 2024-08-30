@@ -1,20 +1,20 @@
 import Link from "next/link";
 
-export default function CardButton() {
+export default function CardButton({ text, href = "/", className = "" }) {
   return (
     <Link
-      href="/product"
-      className="group flex items-center text-lg gap-2 border border-black px-5 py-2 my-2 relative bg-transparent font-medium uppercase text-black transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition-transform before:duration-300 before:content-[''] hover:text-white before:hover:scale-x-100"
+      href={href}
+      className={`group flex items-center text-lg gap-2 border border-black px-5 py-2 my-2 relative bg-transparent font-medium uppercase text-black transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition-transform before:duration-300 before:content-[''] hover:text-white before:hover:scale-x-100 ${className}`}
     >
-      اختيارات الشراء
+      {text}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         width={24}
         height={24}
-        className="transition-colors duration-200 group-hover:text-white"
         color={"#000000"}
         fill={"none"}
+        className="transition-colors duration-200 group-hover:text-white"
       >
         <path
           d="M8 16L16.7201 15.2733C19.4486 15.046 20.0611 14.45 20.3635 11.7289L21 6"

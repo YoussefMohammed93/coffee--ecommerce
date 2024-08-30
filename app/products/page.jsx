@@ -1,29 +1,27 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
-import productsData from "../data/ProductsData";
 import Footer from "../components/Footer";
-import ScrollToTopButton from "../components/ScrollToTopButton";
+import productsData from "../data/ProductsData";
 import CardButton from "../components/CardButton";
 import Pagination from "../components/pagenation";
+import React, { useState, useEffect } from "react";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 export default function Products() {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 4; // Number of products per page
-  const totalPages = Math.ceil(productsData.length / productsPerPage); // Calculate total pages
+  const totalPages = Math.ceil(productsData.length / productsPerPage);
 
   useEffect(() => {
     document.title = "منتجاتنا | بن الباشا";
   }, []);
 
-  // Function to handle page change
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
-  // Calculate products to display for the current page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = productsData.slice(
@@ -35,7 +33,7 @@ export default function Products() {
     <main>
       <Navbar />
       <div>
-        <h1 className="text-6xl font-semibold text-center pt-8 text-[#5f1c00]">
+        <h1 className="text-4xl sm:text-6xl font-semibold text-center pt-8 text-[#5f1c00]">
           منتجات بن الباشا
         </h1>
       </div>
@@ -61,7 +59,7 @@ export default function Products() {
               <p className="text-center" style={{ direction: "ltr" }}>
                 {item.price}
               </p>
-              <CardButton />
+              <CardButton text="اختيارات الشراء" href="/product" />
             </div>
           ))}
         </div>
