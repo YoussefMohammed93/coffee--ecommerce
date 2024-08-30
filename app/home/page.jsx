@@ -1,9 +1,9 @@
 import About from "./About";
 import HeroSection from "./HeroSection";
 import Footer from "../components/Footer";
+import ProductsSection from "./ProductsSection";
 import AboutCoffeeSection from "./AboutCoffeeSection";
 import ScrollToTopButton from "../components/ScrollToTopButton";
-import ProductsSection from "./ProductsSection";
 
 export default function Home() {
   return (
