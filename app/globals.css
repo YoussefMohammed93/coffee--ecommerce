@@ -35,3 +35,7 @@ body {
     padding-right: 10px;
   }
 }
+
+.swiper-wrapper {
+  margin-bottom: 40px !important;
+}

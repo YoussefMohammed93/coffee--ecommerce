@@ -17,7 +17,7 @@ export default function AboutCoffeeSection() {
   ];
 
   return (
-    <div className="bg-[#e9e2d6] py-12">
+    <section className="bg-[#e9e2d6] py-12">
       <div className="wrapper flex flex-col lg:flex-row lg:items-center">
         <div className="flex-1 mb-8 lg:mb-0 flex flex-col items-center lg:items-start text-center lg:text-right">
           <h1
@@ -55,6 +55,6 @@ export default function AboutCoffeeSection() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,59 +1,77 @@
 import Image from "next/image";
 
-const aboutData = [
-  {
-    imgSrc: "/about-company-img1.png",
-    title: "تغليف حديث قوى وصحي",
-    description:
-      "أجود أنواع الخامات من أجل تغليف قوي للعبوات وصحي على القهوة لحفظها بدون اى تغيير طوال فترة الصلاحية",
-  },
-  {
-    imgSrc: "/about-company-img2.png",
-    title: "قابل لإعادة التدوير",
-    description: "عبوات وأكياس صديقة للبيئة من أفضل الخامات الصحية",
-  },
-  {
-    imgSrc: "/about-company-img3.png",
-    title: "حبوب قهوه طبيعية محمصه",
-    description: "حبوب قهوة طبيعية 100% بأفضل جودة ومُنقاه بخبره",
-  },
-  {
-    imgSrc: "/about-company-img4.png",
-    title: "نقاء وجودة مضمونة",
-    description:
-      "نضمن جودة البن المستورد من أفضل المصادر العالمية، مع الحفاظ على نكهة قوية وطبيعية في كل فنجان.",
-  },
-];
-
 export default function About() {
   return (
-    <div className="py-12">
-      <div className="wrapper">
-        <h2 className="text-center text-5xl font-semibold text-[#5f1c00] pb-16">
+    <section className="py-12 bg-[#e9e2d6]">
+      <div className="wrapper mx-auto px-4">
+        <h2 className="text-center text-4xl md:text-5xl font-semibold text-[#5f1c00] pb-12 md:pb-16">
           عن بن الباشا
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {aboutData.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-center gap-3"
-            >
-              <div className="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 relative">
-                <Image
-                  src={item.imgSrc}
-                  alt="coffee"
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-[#5f1c00] text-center">
-                {item.title}
-              </h3>
-              <p className="text-center">{item.description}</p>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div className="flex flex-col items-center justify-center gap-3 text-center">
+            <Image
+              src="/about-company-img1.png"
+              alt="coffee"
+              width={100}
+              height={100}
+              className="w-24 h-24 md:w-32 md:h-32"
+            />
+            <h3 className="text-lg md:text-xl font-semibold text-[#5f1c00]">
+              تغليف حديث قوى وصحي
+            </h3>
+            <p className="text-sm md:text-base">
+              أجود أنواع الخامات من أجل تغليف قوي للعبوات وصحي على القهوة لحفظها
+              بدون اى تغيير طوال فترة الصلاحية
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-3 text-center">
+            <Image
+              src="/about-company-img2.png"
+              alt="coffee"
+              width={100}
+              height={100}
+              className="w-24 h-24 md:w-32 md:h-32"
+            />
+            <h3 className="text-lg md:text-xl font-semibold text-[#5f1c00]">
+              قابل لإعادة التدوير
+            </h3>
+            <p className="text-sm md:text-base">
+              عبوات وأكياس صديقة للبيئة من أفضل الخامات الصحية
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-3 text-center">
+            <Image
+              src="/about-company-img3.png"
+              alt="coffee"
+              width={100}
+              height={100}
+              className="w-24 h-24 md:w-32 md:h-32"
+            />
+            <h3 className="text-lg md:text-xl font-semibold text-[#5f1c00]">
+              حبوب قهوه طبيعية محمصه
+            </h3>
+            <p className="text-sm md:text-base">
+              حبوب قهوة طبيعية 100% بأفضل جودة ومُنقاه بخبره
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center gap-3 text-center">
+            <Image
+              src="/about-company-img4.png"
+              alt="coffee"
+              width={100}
+              height={100}
+              className="w-24 h-24 md:w-32 md:h-32"
+            />
+            <h3 className="text-lg md:text-xl font-semibold text-[#5f1c00]">
+              نقاء وجودة مضمونة
+            </h3>
+            <p className="text-sm md:text-base">
+              نضمن جودة البن المستورد من أفضل المصادر العالمية، مع الحفاظ على
+              نكهة قوية وطبيعية في كل فنجان.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

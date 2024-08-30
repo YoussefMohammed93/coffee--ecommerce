@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#e9e2d6] py-8">
-      <div className="wrapper grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+    <footer className="py-8">
+      <div className="wrapper grid grid-cols-1 md:grid-cols-3 gap-8 pt-5 items-center">
         <div className="text-center md:text-right">
           <h1 className="text-3xl text-[#5f1c00] font-semibold">بن الباشا</h1>
         </div>

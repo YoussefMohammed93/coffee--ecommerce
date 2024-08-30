@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 
 const HeroSection = () => {
   return (
-    <div
+    <section
       className="relative md:h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('hero-background.jpg')" }}
     >
@@ -38,7 +38,7 @@ const HeroSection = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
