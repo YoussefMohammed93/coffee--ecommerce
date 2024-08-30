@@ -34,7 +34,7 @@ const HeroSection = () => {
             href="/"
             className="mt-5 px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition"
           >
-            منتجاتنا
+            منتجات بن الباشا
           </Link>
         </div>
       </div>
