@@ -16,7 +16,9 @@ export default function Products() {
   const totalPages = Math.ceil(AllProductsData.length / productsPerPage);
 
   useEffect(() => {
-    document.title = "منتجاتنا | بن الباشا";
+    if (typeof window !== "undefined") {
+      document.title = "منتجاتنا | بن الباشا";
+    }
   }, []);
 
   const handlePageChange = (page) => {
