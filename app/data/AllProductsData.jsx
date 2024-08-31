@@ -1,0 +1,88 @@
+const AllProductsData = [
+  {
+    id: 1,
+    imgSrc: "/product.png",
+    title: "1بن الباشا",
+    price: "100 EGP",
+    href: "/product/1",
+  },
+  {
+    id: 2,
+    imgSrc: "/product.png",
+    title: "2بن الباشا",
+    price: "200 EGP",
+    href: "/product/2",
+  },
+  {
+    id: 3,
+    imgSrc: "/product.png",
+    title: "3بن الباشا",
+    price: "240 EGP",
+    href: "/product/3",
+  },
+  {
+    id: 4,
+    imgSrc: "/product.png",
+    title: "4بن الباشا",
+    price: "350 EGP",
+    href: "/product/4",
+  },
+  {
+    id: 5,
+    imgSrc: "/product.png",
+    title: "5بن الباشا",
+    price: "50 EGP",
+    href: "/product/5",
+  },
+  {
+    id: 6,
+    imgSrc: "/product.png",
+    title: "6بن الباشا",
+    price: "260 EGP",
+    href: "/product/6",
+  },
+  {
+    id: 7,
+    imgSrc: "/product.png",
+    title: "7بن الباشا",
+    price: "445 EGP",
+    href: "/product/7",
+  },
+  {
+    id: 8,
+    imgSrc: "/product.png",
+    title: "8بن الباشا",
+    price: "340 EGP",
+    href: "/product/8",
+  },
+  {
+    id: 9,
+    imgSrc: "/product.png",
+    title: "9بن الباشا",
+    price: "385 EGP",
+    href: "/product/9",
+  },
+  {
+    id: 10,
+    imgSrc: "/product.png",
+    title: "10بن الباشا",
+    price: "120 EGP",
+    href: "/product/10",
+  },
+  {
+    id: 11,
+    imgSrc: "/product.png",
+    title: "11بن الباشا",
+    price: "265 EGP",
+    href: "/product/11",
+  },
+  {
+    id: 12,
+    imgSrc: "/product.png",
+    title: "12بن الباشا",
+    price: "80 EGP",
+    href: "/product/12",
+  },
+];
+
+export default AllProductsData;

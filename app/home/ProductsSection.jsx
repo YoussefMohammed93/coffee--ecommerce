@@ -4,10 +4,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 import productsData from "../data/ProductsData";
+import CardButton from "../components/CardButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import ProductsButton from "../components/ProductsButton";
-import CardButton from "../components/CardButton";
 
 export default function ProductsSection() {
   return (
@@ -60,7 +60,10 @@ export default function ProductsSection() {
                 <h3 className="text-lg font-semibold text-[#5f1c00] text-center">
                   {item.title}
                 </h3>
-                <p className="text-center" style={{ direction: "ltr" }}>
+                <p
+                  className="text-center text-gray-600 font-semibold text-lg"
+                  style={{ direction: "ltr" }}
+                >
                   {item.price}
                 </p>
                 <CardButton text="اختيارات الشراء" href="/product" />

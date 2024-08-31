@@ -1,18 +1,19 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import productsData from "../data/ProductsData";
 import CardButton from "../components/CardButton";
 import Pagination from "../components/pagenation";
 import React, { useState, useEffect } from "react";
+import AllProductsData from "../data/AllProductsData";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
 export default function Products() {
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 4; // Number of products per page
-  const totalPages = Math.ceil(productsData.length / productsPerPage);
+  const productsPerPage = 4;
+  const totalPages = Math.ceil(AllProductsData.length / productsPerPage);
 
   useEffect(() => {
     document.title = "منتجاتنا | بن الباشا";
@@ -24,7 +25,7 @@ export default function Products() {
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = productsData.slice(
+  const currentProducts = AllProductsData.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
@@ -41,25 +42,33 @@ export default function Products() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-12">
           {currentProducts.map((item) => (
             <div
-              key={item.title}
-              className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md"
+              key={item.id}
+              className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md cursor-pointer"
             >
-              <div className="w-48 h-48 relative overflow-hidden">
-                <Image
-                  src={item.imgSrc}
-                  alt="coffee"
-                  layout="fill"
-                  objectFit="contain"
-                  className="transform transition-transform duration-300 group-hover:scale-[1.15] sm:py-3"
-                />
-              </div>
-              <h3 className="text-lg font-semibold text-[#5f1c00] text-center">
-                {item.title}
-              </h3>
-              <p className="text-center" style={{ direction: "ltr" }}>
-                {item.price}
-              </p>
-              <CardButton text="اختيارات الشراء" href="/product" />
+              <Link
+                href={item.href}
+                className="flex flex-col items-center justify-center gap-1"
+              >
+                <div className="w-48 h-48 relative overflow-hidden">
+                  <Image
+                    src={item.imgSrc}
+                    alt="coffee"
+                    layout="fill"
+                    objectFit="contain"
+                    className="transform transition-transform duration-300 group-hover:scale-[1.15] sm:py-3"
+                  />
+                </div>
+                <h3 className="text-lg font-semibold text-[#5f1c00] text-center">
+                  {item.title}
+                </h3>
+                <p
+                  className="text-center text-gray-600 font-semibold text-lg"
+                  style={{ direction: "ltr" }}
+                >
+                  {item.price}
+                </p>
+              </Link>
+              <CardButton text="اختيارات الشراء" href={item.href} />
             </div>
           ))}
         </div>
