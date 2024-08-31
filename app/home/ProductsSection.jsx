@@ -66,7 +66,10 @@ export default function ProductsSection() {
                 >
                   {item.price}
                 </p>
-                <CardButton text="اختيارات الشراء" href="/product" />
+                <CardButton
+                  text="اختيارات الشراء"
+                  href={`/product/${item.id}`}
+                />
               </div>
             </SwiperSlide>
           ))}

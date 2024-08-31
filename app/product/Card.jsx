@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useCart } from "../context/CartContext";
 
 const Card = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState(50);
+  const { addToCart, notification } = useCart();
 
   useEffect(() => {
     document.title = "منتجاتنا | بن الباشا";
@@ -21,6 +24,10 @@ const Card = ({ product }) => {
   if (!product) {
     return <p>Product not found</p>;
   }
+
+  const handleAddToCart = () => {
+    addToCart({ ...product, quantity, size });
+  };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-10">
@@ -54,10 +61,10 @@ const Card = ({ product }) => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-minus"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-minus"
             >
               <path d="M5 12h14" />
             </svg>
@@ -80,18 +87,38 @@ const Card = ({ product }) => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-plus"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-plus"
             >
               <path d="M5 12h14" />
               <path d="M12 5v14" />
             </svg>
           </button>
         </div>
+        <div className="flex items-center justify-start mb-4">
+          <span className="ml-3">الحجم :</span>
+          <select
+            value={size}
+            onChange={(e) => setSize(e.target.value)}
+            className="relative cursor-pointer p-1 z-20 mx-[6px] w-[100px] min-w-[200px] h-[40px] flex items-center justify-center text-center border focus:outline-none"
+          >
+            <option value={50}>50 جرام</option>
+            <option value={100}>100 جرام</option>
+            <option value={125}>125 جرام ( تمن كيلو )</option>
+            <option value={200}>200 جرام</option>
+            <option value={250}>250 جرام ( ربع كيلو )</option>
+            <option value={300}>300 جرام</option>
+            <option value={500}>500 جرام ( نص كيلو )</option>
+            <option value={1000}>1000 جرام ( كيلو )</option>
+          </select>
+        </div>
         <div className="flex justify-start">
-          <button className="group flex items-center text-lg gap-2 border border-black px-5 py-2 my-2 relative bg-transparent font-medium uppercase text-black transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition-transform before:duration-300 before:content-[''] hover:text-white before:hover:scale-x-100">
+          <button
+            className="group flex items-center text-lg gap-2 border border-black px-5 py-2 my-2 relative bg-transparent font-medium uppercase text-black transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition-transform before:duration-300 before:content-[''] hover:text-white before:hover:scale-x-100"
+            onClick={handleAddToCart}
+          >
             أضف لسلة التسوق
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,10 +127,10 @@ const Card = ({ product }) => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="lucide lucide-shopping-cart"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-shopping-cart"
             >
               <circle cx="8" cy="21" r="1" />
               <circle cx="19" cy="21" r="1" />
@@ -120,6 +147,11 @@ const Card = ({ product }) => {
           من "بن الباشا"، استمتع بلحظات من الفخامة والانتعاش.
         </p>
       </div>
+      {notification && (
+        <div className="fixed bottom-4 left-4 bg-green-500 text-white py-2 px-4 rounded-md shadow-md">
+          {notification}
+        </div>
+      )}
     </div>
   );
 };

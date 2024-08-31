@@ -13,9 +13,8 @@ const Navbar = () => {
     { name: "سلة التسوق", path: "/cart" },
   ];
 
-  const navbarBackground = pathname.includes("/product")
-    ? "bg-[rgba(135,92,43,1)]"
-    : "bg-[#dddddd] bg-opacity-25";
+  const navbarBackground =
+    pathname === "/" ? "bg-[#dddddd] bg-opacity-25" : "bg-[rgba(135,92,43,1)]";
 
   return (
     <nav className="flex w-full relative z-40 pt-10">

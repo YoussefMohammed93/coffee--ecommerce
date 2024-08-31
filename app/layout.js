@@ -1,9 +1,10 @@
 import "./globals.css";
 import { Cairo } from "next/font/google";
+import { CartProvider } from "./context/CartContext";
 
 const cairo = Cairo({
   subsets: ["latin"],
-  weight: ["500", "900"],
+  weight: ["500", "600", "700", "800", "900"],
 });
 
 export const metadata = {
@@ -17,7 +18,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cairo.className}>{children}</body>
+      <body className={cairo.className}>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }

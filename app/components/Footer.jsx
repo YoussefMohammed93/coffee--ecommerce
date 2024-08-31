@@ -7,13 +7,14 @@ import { usePathname } from "next/navigation";
 export default function Footer() {
   const pathname = usePathname();
 
-  const footerBgColor = pathname === "/products" ? "#e9e2d6" : "#fff";
+  const footerBgColor =
+    pathname === "/products" || pathname === "/cart" ? "#e9e2d6" : "#fff";
 
   return (
     <footer className="py-8" style={{ backgroundColor: footerBgColor }}>
       <div className="wrapper grid grid-cols-1 md:grid-cols-3 gap-8 pt-5 items-center">
         <div className="text-center md:text-right">
-          <h1 className="text-3xl text-[#5f1c00] font-semibold">بن الباشا</h1>
+          <h1 className="text-3xl text-[#5f1c00] font-bold">بن الباشا</h1>
         </div>
         <nav className="flex justify-center gap-5">
           <Link

@@ -1,4 +1,7 @@
+"use client";
+
 import Navbar from "../components/Navbar";
+import { usePathname } from "next/navigation";
 import ProductsButton from "../components/ProductsButton";
 
 const HeroSection = () => {
@@ -6,6 +9,7 @@ const HeroSection = () => {
     <section
       className="relative md:h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('hero-background.jpg')" }}
+      key={usePathname()}
     >
       <div className="absolute inset-0 bg-black opacity-60"></div>
       <Navbar />
@@ -19,10 +23,10 @@ const HeroSection = () => {
         </div>
         <div className="flex flex-col items-center md:items-start justify-center pb-16 pt-10 md:pb-20 md:py-12 md:pt-16 lg:pb-16 text-white order-2 md:order-1 text-center md:text-right">
           <div>
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-bold mb-8">
+            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-black mb-8">
               بن الباشا
             </h1>
-            <span className="text-orange-400 text-5xl font-bold">
+            <span className="text-orange-400 text-5xl font-black">
               بن على مزاجك
             </span>
           </div>
