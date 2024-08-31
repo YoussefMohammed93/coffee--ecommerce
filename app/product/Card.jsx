@@ -10,7 +10,9 @@ const Card = ({ product }) => {
   const { addToCart, notification } = useCart();
 
   useEffect(() => {
-    document.title = "منتجاتنا | بن الباشا";
+    if (typeof window !== "undefined") {
+      document.title = "منتجاتنا | بن الباشا";
+    }
   }, []);
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);

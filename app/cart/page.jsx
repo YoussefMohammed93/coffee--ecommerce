@@ -13,9 +13,13 @@ export default function Cart() {
     useCart();
   const [includeDelivery, setIncludeDelivery] = useState(false);
 
-  useEffect(() => {
-    document.title = "سلة التسوق | بن الباشا";
-  }, []);
+  if (typeof window !== "undefined") {
+    useEffect(() => {
+      document.title = "سلة التسوق | بن الباشا";
+    }, []);
+  }
+
+  const isClient = typeof window !== "undefined";
 
   if (cartItems.length === 0) {
     return (
