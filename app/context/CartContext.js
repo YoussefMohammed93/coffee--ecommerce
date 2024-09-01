@@ -7,15 +7,24 @@ import { createContext, useContext, useState, useEffect } from "react";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState(() => {
-    const savedCartItems = localStorage.getItem("cartItems");
-    return savedCartItems ? JSON.parse(savedCartItems) : [];
-  });
-
+  const [cartItems, setCartItems] = useState([]);
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    // Ensure this is only run on the client side
+    if (typeof window !== "undefined") {
+      const savedCartItems = localStorage.getItem("cartItems");
+      if (savedCartItems) {
+        setCartItems(JSON.parse(savedCartItems));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save cart items to localStorage whenever they change
+    if (typeof window !== "undefined") {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
   }, [cartItems]);
 
   const addToCart = (item) => {
