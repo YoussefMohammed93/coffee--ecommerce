@@ -11,7 +11,6 @@ export const CartProvider = ({ children }) => {
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
-    // Ensure this is only run on the client side
     if (typeof window !== "undefined") {
       const savedCartItems = localStorage.getItem("cartItems");
       if (savedCartItems) {
@@ -21,7 +20,6 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // Save cart items to localStorage whenever they change
     if (typeof window !== "undefined") {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
