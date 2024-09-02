@@ -3,12 +3,12 @@ import About from "@/app/home/About";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import Breadcrumb from "@/app/components/Breadcrumb";
-import AllProductsData from "@/app/data/AllProductsData";
 import ScrollToTopButton from "@/app/components/ScrollToTopButton";
+import { fetchProductById, fetchProducts } from "@/app/utils/api";
 
-export default function Product({ params }) {
+export default async function Product({ params }) {
   const { id } = params;
-  const product = AllProductsData.find((item) => item.id === Number(id));
+  const product = await fetchProductById(id);
 
   if (!product) {
     return (
@@ -26,7 +26,7 @@ export default function Product({ params }) {
         <Navbar />
         <div className="py-5 pb-10 md:pb-28">
           <div className="pt-5">
-            <Breadcrumb productName={product.title} />
+            <Breadcrumb productName={product.name} />
           </div>
           <Card product={product} />
         </div>
@@ -39,7 +39,15 @@ export default function Product({ params }) {
 }
 
 export async function generateStaticParams() {
-  return AllProductsData.map((product) => ({
-    id: product.id.toString(),
-  }));
+  try {
+    const response = await fetchProducts(1);
+    const allProducts = response.data;
+
+    return allProducts.map((product) => ({
+      id: product.id.toString(),
+    }));
+  } catch (error) {
+    console.error("Failed to fetch products:", error);
+    return [];
+  }
 }

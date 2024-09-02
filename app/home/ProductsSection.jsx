@@ -3,13 +3,40 @@
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
-import productsData from "../data/ProductsData";
-import CardButton from "../components/CardButton";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import CardButton from "../components/CardButton";
 import ProductsButton from "../components/ProductsButton";
+import Link from "next/link";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function ProductsSection() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          "https://bon-elbasha.up.railway.app/product/get-random/"
+        );
+        const data = await response.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <section className="pt-12 pb-4">
       <div className="wrapper">
@@ -45,32 +72,38 @@ export default function ProductsSection() {
           modules={[Pagination, Autoplay]}
           className="mySwiper mt-8"
         >
-          {productsData.map((item, index) => (
+          {products.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md mx-10 sm:mx-0">
-                <div className="w-48 h-48 relative overflow-hidden">
-                  <Image
-                    src={item.imgSrc}
-                    alt="coffee"
-                    layout="fill"
-                    objectFit="contain"
-                    className="transform transition-transform duration-300 group-hover:scale-[1.15] sm:py-3"
+              <Link href={`/product/${item.id}`}>
+                <div className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md mx-10 sm:mx-0 cursor-pointer">
+                  <div className="w-48 h-48 relative overflow-hidden">
+                    <Image
+                      src={
+                        item.image.startsWith("http")
+                          ? item.image
+                          : `https://bon-elbasha.up.railway.app${item.image}`
+                      }
+                      alt={item.name || "Product Image"}
+                      layout="fill"
+                      objectFit="contain"
+                      className="transform transition-transform duration-300 group-hover:scale-[1.15] sm:py-3"
+                    />
+                  </div>
+                  <h3 className="text-lg font-semibold text-[#5f1c00] text-center">
+                    {item.name}
+                  </h3>
+                  <p
+                    className="text-center text-gray-600 font-semibold text-lg"
+                    style={{ direction: "ltr" }}
+                  >
+                    {item.price} جنيه
+                  </p>
+                  <CardButton
+                    text="اختيارات الشراء"
+                    href={`/product/${item.id}`}
                   />
                 </div>
-                <h3 className="text-lg font-semibold text-[#5f1c00] text-center">
-                  {item.title}
-                </h3>
-                <p
-                  className="text-center text-gray-600 font-semibold text-lg"
-                  style={{ direction: "ltr" }}
-                >
-                  {item.price}
-                </p>
-                <CardButton
-                  text="اختيارات الشراء"
-                  href={`/product/${item.id}`}
-                />
-              </div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

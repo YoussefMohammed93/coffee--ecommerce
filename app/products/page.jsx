@@ -7,30 +7,48 @@ import Footer from "../components/Footer";
 import CardButton from "../components/CardButton";
 import Pagination from "../components/pagenation";
 import React, { useState, useEffect } from "react";
-import AllProductsData from "../data/AllProductsData";
+import { fetchProducts } from "../utils/api";
 import ScrollToTopButton from "../components/ScrollToTopButton";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Products() {
+  const [allProducts, setAllProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const productsPerPage = 4;
-  const totalPages = Math.ceil(AllProductsData.length / productsPerPage);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      document.title = "منتجاتنا | بن الباشا";
-    }
+    const fetchAllProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await fetchProducts();
+        if (response.data && Array.isArray(response.data)) {
+          setAllProducts(response.data);
+        } else {
+          console.error("Fetched data is not an array:", response);
+        }
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllProducts();
   }, []);
+
+  const totalPages = Math.ceil(allProducts.length / productsPerPage);
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = allProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = AllProductsData.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
 
   return (
     <main>
@@ -41,39 +59,46 @@ export default function Products() {
         </h1>
       </div>
       <div className="wrapper">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-12">
-          {currentProducts.map((item) => (
-            <div
-              key={item.id}
-              className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md cursor-pointer"
-            >
-              <Link
-                href={item.href}
-                className="flex flex-col items-center justify-center gap-1"
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-12">
+            {currentProducts.map((item) => (
+              <div
+                key={item.id}
+                className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md cursor-pointer"
               >
-                <div className="w-48 h-48 relative overflow-hidden">
-                  <Image
-                    src={item.imgSrc}
-                    alt="coffee"
-                    layout="fill"
-                    objectFit="contain"
-                    className="transform transition-transform duration-300 group-hover:scale-[1.15] sm:py-3"
-                  />
-                </div>
-                <h3 className="text-lg font-semibold text-[#5f1c00] text-center">
-                  {item.title}
-                </h3>
-                <p
-                  className="text-center text-gray-600 font-semibold text-lg"
-                  style={{ direction: "ltr" }}
+                <Link
+                  href={`/product/${item.id}`}
+                  className="flex flex-col items-center justify-center gap-1"
                 >
-                  {item.price}
-                </p>
-              </Link>
-              <CardButton text="اختيارات الشراء" href={item.href} />
-            </div>
-          ))}
-        </div>
+                  <div className="w-48 h-48 relative overflow-hidden">
+                    <Image
+                      src={
+                        item.image.startsWith("http")
+                          ? item.image
+                          : `https://bon-elbasha.up.railway.app${item.image}`
+                      }
+                      alt={item.name || "Product Image"}
+                      layout="fill"
+                      className="object-contain transform transition-transform duration-300 group-hover:scale-[1.15] sm:py-3"
+                    />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#5f1c00] text-center">
+                    {item.name || "Product Name"}
+                  </h3>
+                  <p className="text-center text-gray-600 font-semibold text-lg">
+                    {item.price || "Price not available"} جنيه
+                  </p>
+                </Link>
+                <CardButton
+                  text="اختيارات الشراء"
+                  href={`/product/${item.id}`}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <Pagination
         currentPage={currentPage}

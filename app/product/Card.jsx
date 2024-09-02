@@ -9,11 +9,17 @@ const Card = ({ product }) => {
   const [size, setSize] = useState(50);
   const { addToCart, notification } = useCart();
 
+  const [totalPrice, setTotalPrice] = useState(product.price);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      document.title = "منتجاتنا | بن الباشا";
+      document.title = `منتجاتنا | ${product?.name || "بن الباشا"}`;
     }
-  }, []);
+  }, [product]);
+
+  useEffect(() => {
+    setTotalPrice(product.price * quantity);
+  }, [quantity, product.price]);
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
 
@@ -35,20 +41,26 @@ const Card = ({ product }) => {
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-10">
       <div className="col-span-12 md:col-span-5 flex flex-col items-center md:items-start">
         <Image
-          src={product.imgSrc}
+          src={
+            product?.image?.startsWith("http")
+              ? product.image
+              : `https://bon-elbasha.up.railway.app${
+                  product?.image || "/product.png"
+                }`
+          }
           width={250}
           height={250}
-          alt={product.title}
-          className="w-full max-w-64"
+          alt={product.name}
+          className="w-full max-w-64 h-full object-cover"
         />
       </div>
       <div className="col-span-12 md:col-span-7 mt-5 md:mt-0 px-5 sm:px-0">
-        <h2 className="text-xl md:text-2xl font-semibold mb-2 text-start">
-          {product.title}
+        <h2 className="text-xl md:text-2xl font-black mb-2 text-start">
+          {product.name}
         </h2>
-        <p className="text-lg my-4 text-end" style={{ direction: "ltr" }}>
-          <span className="font-semibold text-gray-700">{product.price}</span> :
-          السعر
+        <p className="text-lg my-4">
+          السعر :
+          <span className="font-bold text-gray-700"> {product.price} جنيه</span>
         </p>
         <div className="flex items-center justify-start mb-4">
           <span className="ml-3">الكمية :</span>
@@ -140,13 +152,15 @@ const Card = ({ product }) => {
             </svg>
           </button>
         </div>
-        <h3 className="text-lg md:text-xl font-semibold my-2 pt-10 text-start">
+        <p className="text-lg my-4">
+          السعر الإجمالي :
+          <span className="font-bold text-gray-700"> {totalPrice} جنيه</span>
+        </p>
+        <h3 className="text-lg md:text-xl font-semibold my-2 pt-2 text-start">
           الوصف :
         </h3>
         <p className="text-sm md:text-base leading-relaxed max-w-lg text-start text-gray-500">
-          استمتع بمذاق مميز مع "بن الباشا"، قهوة محمصة بعناية من أفضل حبوب البن
-          لتمنحك تجربة غنية تجمع بين النكهة القوية والنعومة الفريدة. مع كل فنجان
-          من "بن الباشا"، استمتع بلحظات من الفخامة والانتعاش.
+          {product.description}
         </p>
       </div>
       {notification && (

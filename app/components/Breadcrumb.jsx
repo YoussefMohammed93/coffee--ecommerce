@@ -3,7 +3,7 @@ import Link from "next/link";
 const Breadcrumb = ({ productName }) => {
   return (
     <nav className="flex items-center justify-start space-x-2 text-gray-600 px-5 sm:px-0">
-      <Link href="/" className=" hover:underline">
+      <Link href="/" className="hover:underline">
         الرئيسية
       </Link>
       <span>
@@ -24,7 +24,7 @@ const Breadcrumb = ({ productName }) => {
           />
         </svg>
       </span>
-      <Link href="/products" className=" hover:underline">
+      <Link href="/products" className="hover:underline">
         منتجات بن الباشا
       </Link>
       <span>
@@ -45,7 +45,9 @@ const Breadcrumb = ({ productName }) => {
           />
         </svg>
       </span>
-      <span className="font-semibold text-black">{productName}</span>
+      <span className="font-semibold text-black">
+        {productName || "اسم المنتج"}
+      </span>
     </nav>
   );
 };

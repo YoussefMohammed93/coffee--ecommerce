@@ -107,16 +107,20 @@ export default function Cart() {
                     <td className="td-product-image pt-5 pr-4 lg:pr-8 min-w-[100px]">
                       <div className="flex justify-center lg:block">
                         <Image
-                          src={item.imgSrc}
-                          alt={item.title}
+                          src={
+                            item.image?.startsWith("http")
+                              ? item.image
+                              : `https://bon-elbasha.up.railway.app${item.image}`
+                          }
+                          alt={item.name}
                           width={80}
                           height={80}
-                          className="mb-4 object-contain"
+                          className="mb-4 object-cover"
                         />
                       </div>
                     </td>
                     <td className="td-product-name text-lg text-black pt-5 pr-16 lg:pr-8 min-w-[150px]">
-                      {item.title}
+                      {item.name}
                     </td>
                     <td className="td-product-price pt-5 text-lg text-black pr-20 lg:pr-12 min-w-[120px]">
                       {Math.round(parseFloat(item.price))} جنيه
