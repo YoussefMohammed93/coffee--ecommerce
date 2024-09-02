@@ -1,6 +1,7 @@
 "use client";
 
 import "swiper/css";
+import Link from "next/link";
 import "swiper/css/pagination";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -8,7 +9,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import CardButton from "../components/CardButton";
 import ProductsButton from "../components/ProductsButton";
-import Link from "next/link";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function ProductsSection() {
@@ -36,6 +36,8 @@ export default function ProductsSection() {
   if (loading) {
     return <LoadingSpinner />;
   }
+
+  const displayedProducts = products.slice(0, 10);
 
   return (
     <section className="pt-12 pb-4">
@@ -72,7 +74,7 @@ export default function ProductsSection() {
           modules={[Pagination, Autoplay]}
           className="mySwiper mt-8"
         >
-          {products.map((item, index) => (
+          {displayedProducts.map((item, index) => (
             <SwiperSlide key={index}>
               <Link href={`/product/${item.id}`}>
                 <div className="flex flex-col items-center justify-center gap-1 p-3 border shadow-md mx-10 sm:mx-0 cursor-pointer">
@@ -92,10 +94,7 @@ export default function ProductsSection() {
                   <h3 className="text-lg font-semibold text-[#5f1c00] text-center">
                     {item.name}
                   </h3>
-                  <p
-                    className="text-center text-gray-600 font-semibold text-lg"
-                    style={{ direction: "ltr" }}
-                  >
+                  <p className="text-center text-gray-600 font-semibold text-lg">
                     {item.price} جنيه
                   </p>
                   <CardButton
