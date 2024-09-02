@@ -8,7 +8,9 @@ export default function Footer() {
   const pathname = usePathname();
 
   const footerBgColor =
-    pathname === "/products" || pathname === "/cart" ? "#e9e2d6" : "#fff";
+    pathname === "/products" || pathname === "/cart" || pathname === "/checkout"
+      ? "#e9e2d6"
+      : "#fff";
 
   return (
     <footer className="py-8" style={{ backgroundColor: footerBgColor }}>

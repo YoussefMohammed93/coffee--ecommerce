@@ -12,6 +12,10 @@ import ScrollToTopButton from "../components/ScrollToTopButton";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Products() {
+  useEffect(() => {
+    document.title = "بن الباشا | منتجاتنا";
+  }, []);
+
   const [allProducts, setAllProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);

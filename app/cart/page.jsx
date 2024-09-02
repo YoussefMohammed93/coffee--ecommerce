@@ -2,24 +2,21 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { useEffect, useState } from "react";
 import { useCart } from "@/app/context/CartContext";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
 export default function Cart() {
   const { cartItems, removeFromCart, notification, updateCartItemQuantity } =
     useCart();
-  const [includeDelivery, setIncludeDelivery] = useState(false);
 
   if (typeof window !== "undefined") {
     useEffect(() => {
       document.title = "سلة التسوق | بن الباشا";
     }, []);
   }
-
-  const isClient = typeof window !== "undefined";
 
   if (cartItems.length === 0) {
     return (
@@ -220,7 +217,10 @@ export default function Cart() {
                   </table>
                   <div className="mt-5">
                     <Link
-                      href="/"
+                      href={{
+                        pathname: "/checkout",
+                        query: { cartItems: JSON.stringify(cartItems) },
+                      }}
                       className="group max-w-[210px] flex items-center text-lg gap-2 border border-black px-5 py-2 my-2 relative bg-transparent font-medium uppercase text-black transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition-transform before:duration-300 before:content-[''] hover:text-white before:hover:scale-x-100"
                     >
                       المتابعة إلى الدفع
