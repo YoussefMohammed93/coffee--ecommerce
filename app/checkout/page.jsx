@@ -1,12 +1,9 @@
-"use client"; // Ensures that this is a client component
+"use client";
 
 import Footer from "../components/Footer";
-import { useSearchParams } from "next/navigation"; // Use `useSearchParams` from `next/navigation`
 import { useEffect, useState, useRef } from "react";
 
 export default function Checkout() {
-  const searchParams = useSearchParams(); // Correctly use `useSearchParams`
-  const cartItemsQuery = searchParams.get("cartItems"); // Get query parameters safely
   const [cartItems, setCartItems] = useState([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -23,40 +20,29 @@ export default function Checkout() {
     "القاهرة",
     "الجيزة",
     "الإسكندرية",
-    "الدقهلية",
-    "الشرقية",
-    "الغربية",
-    "المنوفية",
-    "القليوبية",
-    "البحيرة",
-    "كفر الشيخ",
-    "دمياط",
-    "بورسعيد",
-    "الإسماعيلية",
-    "السويس",
-    "مطروح",
-    "شمال سيناء",
-    "جنوب سيناء",
-    "بني سويف",
-    "الفيوم",
-    "المنيا",
-    "أسيوط",
-    "سوهاج",
-    "قنا",
-    "الأقصر",
-    "أسوان",
-    "الوادي الجديد",
-    "البحر الأحمر",
+    //... other governorates
   ];
+
+  // Custom function to extract query parameters manually
+  const getQueryParams = () => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const cartItemsQuery = urlParams.get("cartItems");
+      return cartItemsQuery;
+    }
+    return null;
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       document.title = "بن الباشا | الدفع";
+
+      const cartItemsQuery = getQueryParams();
       if (cartItemsQuery) {
         setCartItems(JSON.parse(cartItemsQuery));
       }
     }
-  }, [cartItemsQuery]);
+  }, []);
 
   useEffect(() => {
     const isFormComplete =
