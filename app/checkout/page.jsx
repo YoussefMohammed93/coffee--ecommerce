@@ -95,8 +95,8 @@ export default function Checkout() {
   };
 
   return (
-    <Suspense fallback={<LoadingSpinner />}>
-      <Suspense fallback={<LoadingSpinner />}>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <main>
           <div className="wrapper">
             <div className="grid lg:grid-cols-2">
