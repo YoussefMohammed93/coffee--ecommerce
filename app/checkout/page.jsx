@@ -1,11 +1,12 @@
-"use client";
+"use client"; // Ensures that this is a client component
 
 import Footer from "../components/Footer";
-import { useRouter } from "next/router"; // Import useRouter instead of useSearchParams
+import { useSearchParams } from "next/navigation"; // Use `useSearchParams` from `next/navigation`
 import { useEffect, useState, useRef } from "react";
 
 export default function Checkout() {
-  const router = useRouter(); // Use useRouter hook
+  const searchParams = useSearchParams(); // Correctly use `useSearchParams`
+  const cartItemsQuery = searchParams.get("cartItems"); // Get query parameters safely
   const [cartItems, setCartItems] = useState([]);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -50,14 +51,12 @@ export default function Checkout() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Safe check to ensure it runs only on the client
       document.title = "بن الباشا | الدفع";
-      const cartItemsQuery = router.query.cartItems; // Get query parameters from router
       if (cartItemsQuery) {
         setCartItems(JSON.parse(cartItemsQuery));
       }
     }
-  }, [router.query]); // Use router.query as a dependency
+  }, [cartItemsQuery]);
 
   useEffect(() => {
     const isFormComplete =
@@ -94,6 +93,7 @@ export default function Checkout() {
     setSelectedGovernorate(governorate);
     setShowDropdown(false);
   };
+
   return (
     <div>
       <main>
