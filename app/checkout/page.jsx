@@ -242,7 +242,10 @@ export default function Checkout() {
               </div>
             </div>
             <div>
-              <form onSubmit={handleSubmit} className="pt-5 grid gap-1 p-5 bg-[#f1f1f1] mt-10 lg:mt-0">
+              <form
+                onSubmit={handleSubmit}
+                className="pt-5 grid gap-1 p-5 bg-[#f1f1f1] mt-10 lg:mt-0"
+              >
                 <label
                   htmlFor="first-name"
                   className="mt-4 block text-sm font-medium mb-3"

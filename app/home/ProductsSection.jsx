@@ -97,6 +97,9 @@ export default function ProductsSection() {
                   <p className="text-center text-gray-600 font-semibold text-lg">
                     {item.price} جنيه
                   </p>
+                  <p className="text-center text-gray-500 text-sm">
+                    الحجم: {item.size} جم
+                  </p>
                   <CardButton
                     text="اختيارات الشراء"
                     href={`/product/${item.id}`}

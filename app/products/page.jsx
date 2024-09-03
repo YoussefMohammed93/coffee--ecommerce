@@ -94,6 +94,9 @@ export default function Products() {
                   <p className="text-center text-gray-600 font-semibold text-lg">
                     {item.price || "Price not available"} جنيه
                   </p>
+                  <p className="text-center text-gray-500 text-sm">
+                    الحجم: {item.size} جم
+                  </p>
                 </Link>
                 <CardButton
                   text="اختيارات الشراء"
